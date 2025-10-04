@@ -6,8 +6,10 @@ const notes = require('./notes.js');
 // Create yargs parser instance
 const y = yargs(hideBin(process.argv));
 
+// customize yargs version
 y.version('1.1.0');
 
+// create add command
 y.command({
     command: 'add',
     describe: 'Add a new note',
@@ -27,5 +29,32 @@ y.command({
         notes.addNote(argv.title, argv.body);
     }
 });
+
+// create remove command
+y.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.removeNote(argv.title);
+    }
+});
+
+// create list command
+y.command({
+    command: 'list',
+    describe: 'List your notes',
+    handler() {
+        console.log('Listing out all notes');
+    }
+});
+
+// create read command
 
 y.parse();
