@@ -56,5 +56,12 @@ y.command({
 });
 
 // create read command
+y.command({
+    command: 'read',
+    describe: 'Read a note',
+    handler() {
+        console.log('Reading a note');
+    }
+});
 
 y.parse();
