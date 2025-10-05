@@ -51,7 +51,7 @@ y.command({
     command: 'list',
     describe: 'List your notes',
     handler() {
-        console.log('Listing out all notes');
+        notes.listNotes();
     }
 });
 
@@ -59,8 +59,15 @@ y.command({
 y.command({
     command: 'read',
     describe: 'Read a note',
-    handler() {
-        console.log('Reading a note');
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.readNote(argv.title);
     }
 });
 
